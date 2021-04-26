@@ -1,1 +1,29 @@
-
+def count_Kprimes(k, start, nd):
+    lst1 = []
+    count = 0
+    for i in range(start, nd + 1):
+        lst = []
+        g = i
+        while g % 2 == 0:
+            lst.append(2)
+            count += 1
+            if count > k:
+                break
+            g = g // 2
+        for j in range(3, int(g ** (1 / 2)) + 1, 2):
+            while g % j == 0:
+                lst.append(j)
+                count += 1
+                if count > k:
+                    break
+                g = g // j
+        if g > 2:
+            lst.append(g)
+            count += 1
+        count = 0
+        
+        if len(lst) == k:
+            lst1.append(i)
+        else:
+            continue
+    return lst1
